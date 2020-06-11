@@ -1,6 +1,6 @@
 node{
 stage('SCM Checkout'){
-git'https://github.com/mamatha-eng/testing'
+git'https://github.com/mamatha-eng/testing-webapp'
 }
 /*stage('Compile-package'){
 def mvnhome= tool name: 'maven-3', type: 'maven'
