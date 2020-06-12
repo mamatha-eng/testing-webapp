@@ -1,0 +1,27 @@
+node{
+def tomcatWeb = 'C:\\tomcat\\apache-tomcat-9.0.36\\webapps'
+def tomcatBin = 'C:\\tomcat\\apache-tomcat-9.0.36\\bin'
+def tomcatStatus = ''
+stage('SCM Checkout'){
+git'https://github.com/mamatha-eng/testing-webapp'
+}
+/*stage('Compile-package'){
+def mvnhome= tool name: 'maven-3', type: 'maven'
+bat "${mvnHome}/bin/mvn package" 
+}
+}*/
+stage('Compile-package'){
+def mvn_version = 'maven-3'
+withEnv( ["PATH+MAVEN_HOME=${tool mvn_version}/bin"] ) {
+  bat "mvn -Dmaven.test.failure.ignore=true clean package"
+ }
+}
+ stage('Deploy to Tomcat'){
+     bat "copy target\\03-spring-boot-web-application-h2-0.0.1-SNAPSHOT.war\"${tomcatWeb}\\JenkinsWar.war\""
+   }
+      stage ('Start Tomcat Server') {
+         sleep(time:5,unit:"SECONDS") 
+         bat "${tomcatBin}\\startup.bat"
+         sleep(time:100,unit:"SECONDS")
+   }
+}
