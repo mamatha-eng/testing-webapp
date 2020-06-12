@@ -17,7 +17,7 @@ withEnv( ["PATH+MAVEN_HOME=${tool mvn_version}/bin"] ) {
  }
 }
  stage('Deploy to Tomcat'){
-     bat "copy target\\03-spring-boot-web-application-h2-0.0.1-SNAPSHOT.war\"${tomcatWeb}\\JenkinsWar.war\""
+     bat "copy target\\03-spring-boot-web-application-h2-0.0.1-SNAPSHOT.war\"${tomcatWeb}\\03-spring-boot-web-application-h2-0.0.1-SNAPSHOT.war\""
    }
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
