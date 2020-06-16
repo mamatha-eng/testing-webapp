@@ -5,12 +5,12 @@ def tomcatStatus = ''
 stage('SCM Checkout'){
 git'https://github.com/mamatha-eng/testing-webapp'
 }
-/*stage('Compile-package'){
+/*stage('Compile-package-create-war-file'){
 def mvnhome= tool name: 'maven-3', type: 'maven'
 bat "${mvnHome}/bin/mvn package" 
 }
 }*/
-stage('Compile-Package-create-war-file'){
+stage('Compile-Package'){
 def mvn_version = 'maven-3'
 withEnv( ["PATH+MAVEN_HOME=${tool mvn_version}/bin"] ) {
   bat "mvn -Dmaven.test.failure.ignore=true clean package"
