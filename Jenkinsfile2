@@ -22,6 +22,6 @@ withEnv( ["PATH+MAVEN_HOME=${tool mvn_version}/bin"] ) {
       stage ('Start Tomcat Server') {
          sleep(time:5,unit:"SECONDS") 
          bat "${tomcatBin}\\tomcat9"
-         sleep(time:100,unit:"SECONDS")
+         sleep(time:5,unit:"SECONDS")
    }
 }
